@@ -23,7 +23,8 @@ class FIFO:
         """
 
         self.head = Node(value) if value else None
-        self.last = head
+        self.last = self.head
+        self.length = 1 if self.head else 0
 
     def insert(self, value):
         """
@@ -37,11 +38,12 @@ class FIFO:
         """
         
         node = Node(value)
-        self.last.next = node
-        self.last = node
-
         if not self.head:
             self.head = node
+            self.last = self.head
+        self.last.next = node
+        self.last = node
+        self.length += 1
         
     def remove(self):
         """
@@ -53,13 +55,14 @@ class FIFO:
             value (Any): returns the value of the removed element
         """
         if self.isEmpty():
-            raise Exception("Empty FIFO structure")
+            raise Exception("Can't remove element from empty FIFO structure")
 
         node = self.head
 
         if self.head == self.last:
             self.last = None
         self.head = self.head.next
+        self.length -= 1
 
         return node.value
 
@@ -74,7 +77,7 @@ class FIFO:
             value (Any): value of element that will be removed next.
         """
         if self.isEmpty():
-            raise Exception("Empty FIFO structure")
+            raise Exception("Can't peek in empty FIFO structure")
 
         return self.head.value
 
@@ -90,8 +93,19 @@ class FIFO:
         """
         return self.head == None
 
+    def size(self):
+        """
+        returns the size of the FIFO structure
+
+        params:
+            None
+        returns:
+            size(int): size of the FIFO structure.
+        """
+        return self.length
+
 class LIFO:
-    def _init__(self, value=None):
+    def __init__(self, value=None):
         """
         Starts the LIFO structure with given value
 
@@ -100,6 +114,7 @@ class LIFO:
         """
         head = Node(value) if value else None
         self.head = head
+        self.length = 1 if self.head else 0
 
     def insert(self,value):
         """
@@ -114,6 +129,7 @@ class LIFO:
         node = Node(value)
         node.next = self.head
         self.head = node
+        self.length += 1
 
     def remove(self):
         """
@@ -125,9 +141,10 @@ class LIFO:
             value (Any): returns the value of the removed element
         """
         if self.isEmpty():
-            raise Exception("EMPTY LIFO structure")
+            raise Exception("Can't remove element from an empty LIFO structure")
         node = self.head
         self.head = self.head.next
+        self.length -= 1
         return node.value
 
     def peek(self):
@@ -155,4 +172,14 @@ class LIFO:
         
         """
         return self.head == None
-             
+    
+    def size(self):
+        """
+        returns the size of the LIFO structure
+
+        params:
+            None
+        returns:
+            size(int): size of the LIFO structure.
+        """
+        return self.length
