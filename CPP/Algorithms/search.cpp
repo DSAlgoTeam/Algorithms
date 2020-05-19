@@ -5,7 +5,7 @@ template <class T>
 class Search
 {
 private:
-    T arr[];
+    vector<T> arr;
     T key;
 
 public:
@@ -41,9 +41,9 @@ int Search<T>::BinarySearch(int low, int high)
         if (arr[mid] == key)
             return mid + 1;
         if (arr[mid] < key)
-            return BinarySearch(arr, key, mid + 1, high);
+            return BinarySearch(mid + 1, high);
         else
-            return BinarySearch(arr, key, low, mid - 1);
+            return BinarySearch(low, mid - 1);
     }
     return -1;
 }

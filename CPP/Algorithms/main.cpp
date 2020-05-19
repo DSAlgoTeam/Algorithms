@@ -8,7 +8,7 @@ int main()
         int a;
         int b;
         cout << "Select type of search:\n";
-        cout << "1.Binary search\n2. Linear Search\n";
+        cout << "1. Binary search\n2. Linear Search\n";
         cin >> b;
         cout << "Select datatype of operation:\n";
         cout << "1. Integer\n2. Float\n3. Char\n";
@@ -44,6 +44,7 @@ int main()
                 else
                     cout << "Key not found\n";
             }
+            break;
         }
         case 2:
         {
@@ -71,6 +72,7 @@ int main()
                 else
                     cout << "Key not found\n";
             }
+            break;
         }
         case 3:
         {
@@ -98,8 +100,8 @@ int main()
                 else
                     cout << "Key not found\n";
             }
+            break;
         }
-        break;
         }
     }
     return 0;
