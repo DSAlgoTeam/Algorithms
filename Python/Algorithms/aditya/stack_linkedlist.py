@@ -1,3 +1,4 @@
+import sys
 class Node :
     def __init__(self,data) :
         self.data = data
@@ -22,8 +23,8 @@ class Stack :
     
     def pop(self) :
         if self.isempty() :
-            print("Stack Underflow")
-            return 
+            sys.exit("Stack Underflow")
+            
         temp = self.head
         self.head = self.head.next
         temp.next = None
@@ -31,8 +32,8 @@ class Stack :
         
     def peek(self) :
         if self.isempty() :
-            print("Stack Underflow")
-            return 
+            sys.exit("Stack Underflow")
+            
         return self.head.data
 
     def displayList(self) :

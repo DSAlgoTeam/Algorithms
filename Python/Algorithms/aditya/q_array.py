@@ -1,3 +1,4 @@
+import sys
 class Queue :
     
     def __init__(self):
@@ -9,8 +10,8 @@ class Queue :
 
     def dequeue(self) :
         if self.isempty() :
-            print('queue undeflow')
-            return
+            sys.exit('queue undeflow')
+            
         return self.items.pop(0)
 
     def isempty(self) :
@@ -19,8 +20,8 @@ class Queue :
         return False
     def peek(self) :
         if self.isempty() :
-            print('queue undeflow')
-            return
+            sys.exit('queue undeflow')
+            
         return self.items[0]
 
     def getsize(self) :

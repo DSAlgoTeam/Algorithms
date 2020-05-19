@@ -1,3 +1,4 @@
+import sys
 class Stack :
     def __init__(self):
         
@@ -8,8 +9,8 @@ class Stack :
 
     def pop(self) :
         if len(self.items) == 0 :
-            print('Stack Underflow')
-            return
+            sys.exit('Stack Underflow')
+            
         return self.items.pop()
 
     def isempty(self) :
@@ -20,8 +21,8 @@ class Stack :
     
     def peek(self) :
         if len(self.items) == 0 :
-            print('Stack Underflow')
-            return
+            sys.exit('Stack Underflow')
+            
         return self.items[-1]
 
     def getStack(self) :

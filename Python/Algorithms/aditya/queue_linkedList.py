@@ -1,3 +1,4 @@
+import sys
 class Node :
     def __init__(self,data) :
         self.data = data
@@ -23,8 +24,8 @@ class Queue :
     
     def dequeue(self) :
         if self.isempty() :
-            print("Queue Underflow")
-            return 
+            sys.exit("Queue Underflow")
+            
         temp = self.head
         self.head = self.head.next
         temp.next = None
@@ -33,8 +34,8 @@ class Queue :
     def peek(self) :
         ''' gives the element about to be removed , but doesnt remove it'''
         if self.isempty() :
-            print("Queue Underflow")
-            return 
+            sys.exit("Queue Underflow")
+             
         return self.head.data
 
     def displayList(self) :
