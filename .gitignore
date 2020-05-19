@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Tests
+test.py
+
+# PyCache
+*.pyc
