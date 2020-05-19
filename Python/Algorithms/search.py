@@ -1,7 +1,7 @@
 from typing import List, TypeVar
 
 
-def linear_search(self, element, lst: List):
+def linear_search(element, lst):
     '''
     Searches for the given element in the given list using `Linear Search` algorithm,
     and returns the index of the element in the list. If the element is not found, returns -1
@@ -19,7 +19,7 @@ def linear_search(self, element, lst: List):
     return -1
 
 
-def binary_search(self, element, lst: List):
+def binary_search(element, lst):
     '''
     Searches for the given element in the given list using `Linear Search` algorithm,
     and returns the index of the element in the list. If the element is not found, returns -1
@@ -32,7 +32,7 @@ def binary_search(self, element, lst: List):
         index(int): index of `element` in `lst` if found, else -1
     '''
 
-    if lst == sorted(lst):
+    if lst != sorted(lst):
         raise ValueError(' param ( lst )  must be sorted.')
 
 
@@ -41,7 +41,7 @@ def binary_search(self, element, lst: List):
     lo, hi = 0, lstLength - 1
     
     while lo <= hi:
-        mid = (hi + lo) / 2
+        mid = (hi + lo) // 2
 
         if lst[mid] == element:
             return mid
