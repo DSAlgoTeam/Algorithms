@@ -13,7 +13,86 @@ class Node:
         self.next = next
 
 
-class FIFO:
+class LinkedList:
+    def __init__(self):
+        """
+        Creates a linked list.
+        """
+        self.head = None
+        self.last = self.head
+        self.length = 0
+
+    def insert(self, value):
+        """
+        Inserts an element to the Linked List.
+
+        params:
+            value (Any): inserts the given value to the Linked List
+
+        returns:
+            None
+        """
+        node = Node(value)
+        self.length += 1
+        if not self.head:
+            self.head = node
+            self.last = self.head
+            return
+        self.last.next = node
+        self.last = node
+
+    def remove(self, value):
+        """
+        Removes an element from the Linked Lsit.
+
+        params:
+            value (Any): Value to be removed from 
+        returns:
+            None
+        """
+        if not self.head:
+            raise Exception('Empty Linked List')
+        node = self.head
+        prev = node
+        self.length -= 1
+        if not self.head.next and self.head.value == value:
+            self.head = None
+            node = None
+            return
+        while node != None:
+            if node.value == value:
+                prev.next = prev.next.next
+                del node
+                return
+            prev = node
+            node = node.next
+        raise ValueError('No such element in the Linked List')
+
+    def isEmpty(self):
+        """
+        Checks if the FIFO structure is empty or not
+
+        params:
+            None
+        returns
+            (bool) : True if list is empty else False
+        
+        """
+        return self.length == 0
+
+    def size(self):
+        """
+        returns the size of the LIFO structure
+
+        params:
+            None
+        returns:
+            size(int): size of the LIFO structure.
+        """
+        return self.length
+
+
+class FIFO(LinkedList):
     def __init__(self, value=None):
         """
         Starts the FIFO structure with given value
@@ -22,28 +101,10 @@ class FIFO:
             value (Any): value of the first element of the FIFO structure
         """
 
-        self.head = Node(value) if value else None
-        self.last = self.head
-        self.length = 1 if self.head else 0
+        super(FIFO,self).__init__()
+        if value:
+            super(FIFO,self).insert(value)
 
-    def insert(self, value):
-        """
-        Inserts an element to the FIFO structure.
-
-        params:
-            value (Any): inserts the given value to the FIFO structure
-
-        returns:
-            None
-        """
-        
-        node = Node(value)
-        if not self.head:
-            self.head = node
-            self.last = self.head
-        self.last.next = node
-        self.last = node
-        self.length += 1
         
     def remove(self):
         """
@@ -81,30 +142,7 @@ class FIFO:
 
         return self.head.value
 
-    def isEmpty(self):
-        """
-        Checks if the FIFO structure is empty or not
-
-        params:
-            None
-        returns
-            (bool) : True if list is empty else False
-        
-        """
-        return self.head == None
-
-    def size(self):
-        """
-        returns the size of the FIFO structure
-
-        params:
-            None
-        returns:
-            size(int): size of the FIFO structure.
-        """
-        return self.length
-
-class LIFO:
+class LIFO(LinkedList):
     def __init__(self, value=None):
         """
         Starts the LIFO structure with given value
@@ -112,9 +150,9 @@ class LIFO:
         params:
             value (Any): value of the first element of the LIFO structure
         """
-        head = Node(value) if value else None
-        self.head = head
-        self.length = 1 if self.head else 0
+        super(LIFO,self).__init__()
+        if value:
+            super(LIFO,self).insert(value)
 
     def insert(self,value):
         """
@@ -160,26 +198,3 @@ class LIFO:
         if self.isEmpty():
             raise Exception("EMPTY LIFO structure")
         return self.head.value
-
-    def isEmpty(self):
-        """
-        Checks if the FIFO structure is empty or not
-
-        params:
-            None
-        returns
-            (bool) : True if list is empty else False
-        
-        """
-        return self.head == None
-    
-    def size(self):
-        """
-        returns the size of the LIFO structure
-
-        params:
-            None
-        returns:
-            size(int): size of the LIFO structure.
-        """
-        return self.length
