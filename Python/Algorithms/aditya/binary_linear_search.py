@@ -1,8 +1,4 @@
-# line = input('Input line list of numeric items')
 
-# line = list(map(int,line.strip().split()))
-
-# key = int(input("Enter the key"))
 
 def binary_search(array,key) :
     '''
