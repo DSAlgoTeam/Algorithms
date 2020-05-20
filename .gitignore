@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+driver_array.py
+driver_linked.py
+__pycache__
