@@ -9,19 +9,21 @@ struct Node
 };
 
 template <class T>
-class LStack
+class LStack_LQueue
 {
 private:
     Node<T> *root = new Node<T>;
     Node<T> *head = root;
 
 public:
-    void push(T);
-    void pop();
+    void stack_push(T);
+    void stack_pop();
+    void queue_push(T);
+    void queue_pop();
 };
 
 template <class T>
-void LStack<T>::push(T key)
+void LStack_LQueue<T>::stack_push(T key)
 {
     cout << "Pushed element is - " << key << endl;
     Node<T> *input = new Node<T>;
@@ -31,7 +33,7 @@ void LStack<T>::push(T key)
 }
 
 template <class T>
-void LStack<T>::pop()
+void LStack_LQueue<T>::stack_pop()
 {
     if (root->next != NULL)
     {
@@ -49,19 +51,7 @@ void LStack<T>::pop()
 }
 
 template <class T>
-class LQueue
-{
-private:
-    Node<T> *root = new Node<T>;
-    Node<T> *head = root;
-
-public:
-    void push(T);
-    void pop();
-};
-
-template <class T>
-void LQueue<T>::push(T key)
+void LStack_LQueue<T>::queue_push(T key)
 {
     cout << "Pushed element is - " << key << endl;
     Node<T> *input = new Node<T>;
@@ -71,7 +61,7 @@ void LQueue<T>::push(T key)
 }
 
 template <class T>
-void LQueue<T>::pop()
+void LStack_LQueue<T>::queue_pop()
 {
     if (root->next != NULL)
     {
