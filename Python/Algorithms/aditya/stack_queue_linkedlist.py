@@ -46,34 +46,34 @@ class CommonLinkedList(ABC) :
 
     def __repr__(self) :
         '''Returns the FIFO/LIFO data Structure as a list '''
-        iternode = self.head 
+        node = self.head 
         string_rep = ""
         if self.is_empty(): 
             raise Exception("Structure Underflow") 
           
         else: 
               
-            while(iternode != None): 
+            while(node != None): 
 
-                string_rep += " {} -> ".format(iternode.data)  
+                string_rep += " {} -> ".format(node.data)  
                  
-                iternode = iternode.next
+                node = node.next
             return string_rep
     
     def __str__(self) :
         '''Returns the FIFO/LIFO data Structure as a Sring seprated by --> '''
-        iternode = self.head 
+        node = self.head 
         string_rep = ""
         if self.is_empty(): 
             raise Exception("Structure Underflow") 
           
         else: 
               
-            while(iternode != None): 
+            while(node != None): 
 
-                string_rep += " {} -> ".format(iternode.data)  
+                string_rep += " {} -> ".format(node.data)  
                  
-                iternode = iternode.next
+                node = node.next
             return string_rep
           
     
