@@ -8,7 +8,8 @@ def binary_search(array,key) :
     Args:
         param1(list, tuple): list or tuple .
         param2(int,string): The element to be found inside param1.
-    
+    Raises :
+        Exception : When provided array is not sorted
     Returns:
         index(int): The return value the index of the element found else -1.
     '''
