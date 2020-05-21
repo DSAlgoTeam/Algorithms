@@ -91,7 +91,8 @@ class SingleLinkedListCommon(object):
         while temp_node.next is not None:
             temp_node = temp_node.next
 
-        temp_node.next = instance.make_node(value)
+        temp_node += instance.make_node(value)
+        # temp_node.next = instance.make_node(value)
         instance.length += 1
 
     @staticmethod
@@ -106,7 +107,7 @@ class SingleLinkedListCommon(object):
             return
 
         value = instance.make_node(value)
-        value.next = instance.root
+        value += instance.root
         instance.root = value
         instance.length += 1
 
@@ -199,6 +200,7 @@ class Node(object):
         '''
         if isinstance(node, Node):
             self.next = node
+            return self
         else:
             raise TypeError("Inappropriate Add Node operation")
     
