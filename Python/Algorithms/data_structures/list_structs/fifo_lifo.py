@@ -1,4 +1,4 @@
-from abc import ABCMeta
+from abc import ABCMeta, abstractmethod
 
 
 class Abstract_FIFO_LIFO:
@@ -17,6 +17,9 @@ class FIFO_LIFO_Common(metaclass=ABCMeta):
         if value is not None:
             self.elements.append(value)
         self.length = len(self.elements)
+
+    def empty(self):
+        return Common_FIFO_LIFO_Methods.is_empty(self)
 
     def __len__(self):
         return self.length
@@ -69,7 +72,7 @@ class Common_FIFO_LIFO_Methods(object):
 
 
 
-class FIFO_List(LIFOFIFOCommon):
+class FIFO_List(FIFO_LIFO_Common):
 
     def insert(self,value):
         Common_FIFO_LIFO_Methods.push_back(self,value)
@@ -78,7 +81,7 @@ class FIFO_List(LIFOFIFOCommon):
         return Common_FIFO_LIFO_Methods.pop_front(self)
     
 
-class LIFO_List(LIFOFIFOCommon):
+class LIFO_List(FIFO_LIFO_Common):
     
     def insert(self, value):
         Common_FIFO_LIFO_Methods.push_back(self,value)
