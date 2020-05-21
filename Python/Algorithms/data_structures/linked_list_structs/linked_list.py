@@ -37,7 +37,7 @@ class CommonSingleLLMethods(object):
     def make_node(self, value):
         if value is None:
             raise ValueError("Nonetype Arguement Not expected")
-        return (value if isinstance(value, Node) else Node(value))
+        return value if isinstance(value, Node) else Node(value)
 
     def check_remove_root(self):
         '''
@@ -52,15 +52,18 @@ class CommonSingleLLMethods(object):
         
         return False
 
+    def empty(self):
+        return self.root is None
+
     def __len__(self):
         return self.length
 
     def __str__(self):
-        string_ll = ""
         temp_node = self.root
+        string_ll = self.root.value if self.root is not None else ""
         while temp_node.next is not None:
-            string_ll = "{0}->{1}".format(string_ll, str(temp_node))
             temp_node = temp_node.next
+            string_ll = "{0}->{1}".format(string_ll, str(temp_node))
 
         return string_ll
 
@@ -88,7 +91,7 @@ class SingleLinkedListCommon(object):
         while temp_node.next is not None:
             temp_node = temp_node.next
 
-        temp_node += instance.make_node(value)
+        temp_node.next = instance.make_node(value)
         instance.length += 1
 
     @staticmethod
@@ -99,10 +102,11 @@ class SingleLinkedListCommon(object):
         SingleLinkedListCommon.is_ll_instance(instance) 
 
         if instance.create_root_if_none(value):
+            instance.length = 1
             return
 
         value = instance.make_node(value)
-        value += instance.root
+        value.next = instance.root
         instance.root = value
         instance.length += 1
 
@@ -145,7 +149,11 @@ class FIFO_LL(AbstractLL, CommonSingleLLMethods):
         SingleLinkedListCommon.push_back(self, value)
     
     def remove(self):
+        if self.empty():
+            raise Exception('Empty FIFO strcture')
+        value = self.root.value
         SingleLinkedListCommon.pop_front(self)
+        return value
 
 class LIFO_LL(AbstractLL, CommonSingleLLMethods):
     '''
@@ -155,7 +163,11 @@ class LIFO_LL(AbstractLL, CommonSingleLLMethods):
         SingleLinkedListCommon.push_front(self, value)
 
     def remove(self):
+        if self.empty():
+            raise Exception('Empty LIFO strcture')
+        value = self.root.value
         SingleLinkedListCommon.pop_front(self)
+        return value
 
 class LinkedList(CommonSingleLLMethods):
 

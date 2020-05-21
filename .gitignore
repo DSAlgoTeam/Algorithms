@@ -36,3 +36,6 @@ test.py
 
 # PyCache
 *.pyc
+
+# VS Code settings
+settings.json
