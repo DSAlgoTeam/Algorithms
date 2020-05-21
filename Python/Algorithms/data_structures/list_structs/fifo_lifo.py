@@ -25,10 +25,7 @@ class FIFO_LIFO_Common(metaclass=ABCMeta):
         return self.length
 
     def __str__(self):
-        temp = ""
-        for i in self.elements:
-            temp = temp + " -> " + str(i)
-        return temp
+        return "->".join(list(map(str, self.elements)))
 
 class Common_FIFO_LIFO_Methods(object):
 
