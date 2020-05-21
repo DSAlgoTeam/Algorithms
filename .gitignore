@@ -38,4 +38,4 @@ test.py
 *.pyc
 
 # VS Code settings
-settings.json
+**/.vscode/**
