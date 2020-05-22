@@ -50,6 +50,6 @@ def binary_search(element, lst):
             hi = mid - 1
         
         else:
-            low = mid + 1
+            lo = mid + 1
     
     return -1
