@@ -1,2 +1,2 @@
 # Algorithms
-C++ and Python Supported Library for Algorithma
+C++ and Python Supported Library for Algorithms
