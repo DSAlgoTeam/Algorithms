@@ -25,7 +25,7 @@ class List_Common(metaclass=ABCMeta):
         return self.length
 
     def __str__(self):
-        return "->".join(list(map(str, self.elements)))
+        return "->".join(list(map(str, self.elements))) if self.length > 0 else "Empty List"
 
 class Common_List_Methods(object):
 
