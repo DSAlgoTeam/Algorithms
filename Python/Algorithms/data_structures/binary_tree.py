@@ -23,17 +23,14 @@ class CommonTreeMethods:
         Constructor to initialize a Tree.
         '''
         self.root = None
-        self.height = 0
         self.numOfNodes = 0
         if value is not None:
             self.root = self.make_node(value)
             self.length = 1
-            self.height = 1
     
     def create_root_if_none(self,value):
         if self.root is None:
             self.root = self.make_node(value)
-            self.height += 1
             self.length += 1
             return True
         return False
@@ -59,7 +56,7 @@ class CommonTreeMethods:
     
     def inorder(self, node = None, fn = print):
         '''
-        returns an iterable containing all the elements after inorder traversal
+        Applies `fn` to all elements during inorder traversal
 
         '''
         if node is None:
@@ -74,7 +71,7 @@ class CommonTreeMethods:
 
     def preorder(self, node = None, fn = print):
         '''
-        returns an iterable containing all the elements after preorder traversal
+        Applies `fn` to all elements during preorder traversal
 
         '''
         if node is None:
@@ -82,30 +79,67 @@ class CommonTreeMethods:
         
         fn(node.value)
         if node.left:
-            self.inorder(node.left,fn)
+            self.preorder(node.left,fn)
         if node.right:
-            self.inorder(node.right,fn)
+            self.preorder(node.right,fn)
     
     def postorder(self, node = None, fn = print):
         '''
-        returns an iterable containing all the elements after preorder traversal
+        Applies `fn` to all elements during postorder traversal
 
         '''
         if node is None:
             node = self.root
         
         if node.left:
-            self.inorder(node.left,fn)
+            self.postorder(node.left,fn)
 
         if node.right:
-            self.inorder(node.right,fn)
+            self.postorder(node.right,fn)
 
         fn(node.value)
     
+    def levelorder(self, node = None, fn = print):
+        '''
+        Applies `fn` to all elements during level order traversal
+        '''
+        node = node if node else self.root
+        h = self.height(node)
+        for i in range(1,h+1):
+            self.apply_to_level(node, i, print)
+
+    def apply_to_level(self, node, level, fn = print):
+        '''
+        Applies given function to a level.
+        '''
+        if node is None:
+            return
+        if level == 1:
+            fn(node.value)
+        if level > 1:
+            self.apply_to_level(node.left, level - 1, fn)
+            self.apply_to_level(node.right, level - 1, fn)
+
+    
+    def height(self, node):
+        '''
+        find the height of a node in the tree from the bottom most element in that subtree.
+
+        '''
+        if node is None:
+            return 0
+        
+        lheight = self.height(node.left)
+        rheight = self.height(node.right)
+
+        if lheight > rheight:
+            return lheight + 1
+        else:
+            return rheight + 1
 
     def dfs(self, v):
         '''
-        
+        searches for element v using dfs in tree
         '''
         found = False
         stack = Stack_List(self.root)
@@ -123,6 +157,7 @@ class CommonTreeMethods:
     
     def bfs(self, v):
         '''
+        searches for element v using bfs in tree
         '''
         found = False
         queue = Queue_List(self.root)
@@ -140,20 +175,37 @@ class CommonTreeMethods:
                 queue.insert(node.right)
         return found
 
-
+    def topological_sort(self):
+        sortedElements = []
+        self.preorder(self.root, lambda x: sortedElements.append(x))
+        return sortedElements
 
 
     def __len__(self):
         return self.length
     
-    # TODO: finish implementation of __str__
-    #def __str__(self):
-        # TODO: figure out the string representation
 
 
 class Tree(CommonTreeMethods,Abstract_Tree):
     def insert(self,value):
-        print('')
+        '''
+        Level order insertion of nodes
+        '''
+        if self.create_root_if_none(value):
+            return
+        queue = Queue_List(self.root)
+        while not queue.empty():
+            node = queue.remove()
+            if not node.left:
+                node.left = self.make_node(value)
+                break
+            else:
+                queue.insert(node.left)
+            if not node.right:
+                node.right = self.make_node(value)
+                break
+            else:
+                queue.insert(node.right)
 
 class TreeNode:
     def __init__(self,value,left=None,right=None):
