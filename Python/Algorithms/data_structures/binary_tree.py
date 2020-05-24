@@ -54,6 +54,52 @@ class CommonTreeMethods:
             return True
 
         return False
+    
+    def inorder(self, node = None, fn = print):
+        '''
+        returns an iterable containing all the elements after inorder traversal
+
+        '''
+        if node is None:
+            node = self.root
+        if node.left:
+            self.inorder(node.left,fn)
+
+        fn(node.value)
+        
+        if node.right:
+            self.inorder(node.right,fn)
+
+    def preorder(self, node = None, fn = print):
+        '''
+        returns an iterable containing all the elements after preorder traversal
+
+        '''
+        if node is None:
+            node = self.root
+        
+        fn(node.value)
+        if node.left:
+            self.inorder(node.left,fn)
+        if node.right:
+            self.inorder(node.right,fn)
+    
+    def postorder(self, node = None, fn = print):
+        '''
+        returns an iterable containing all the elements after preorder traversal
+
+        '''
+        if node is None:
+            node = self.root
+        
+        if node.left:
+            self.inorder(node.left,fn)
+
+        if node.right:
+            self.inorder(node.right,fn)
+
+        fn(node.value)
+    
 
     def __len__(self):
         return self.length
