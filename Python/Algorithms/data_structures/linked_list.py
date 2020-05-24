@@ -30,6 +30,7 @@ class CommonSingleLLMethods(object):
 
         if self.root is None:
             self.root = self.make_node(value)
+            self.length = 1
             return True
 
         return False
@@ -37,7 +38,7 @@ class CommonSingleLLMethods(object):
     def make_node(self, value):
         if value is None:
             raise ValueError("Nonetype Arguement Not expected")
-        return (value if isinstance(value, Node) else Node(value))
+        return value if isinstance(value, Node) else Node(value)
 
     def check_remove_root(self):
         '''
@@ -52,15 +53,21 @@ class CommonSingleLLMethods(object):
         
         return False
 
+    def empty(self):
+        return self.root is None
+
     def __len__(self):
         return self.length
 
     def __str__(self):
-        string_ll = ""
         temp_node = self.root
-        while temp_node.next is not None:
-            string_ll = "{0}->{1}".format(string_ll, str(temp_node))
-            temp_node = temp_node.next
+        if self.root is None:
+            string_ll = "Empty LL"
+        else:
+            string_ll = str(temp_node)
+            while temp_node.next is not None:
+                temp_node = temp_node.next
+                string_ll = "{0}->{1}".format(string_ll, str(temp_node))
 
         return string_ll
 
@@ -71,6 +78,10 @@ class SingleLinkedListCommon(object):
         if not isinstance(instance, (LinkedList, FIFO_LL, LIFO_LL)):
             raise Exception("Not a LL Instance")
 
+    @staticmethod
+    def is_empty(instance):
+        if instance.empty():
+            raise Exception("Empty LL")
 
     @staticmethod
     def push_back(instance, value):
@@ -80,7 +91,6 @@ class SingleLinkedListCommon(object):
         SingleLinkedListCommon.is_ll_instance(instance) 
 
         if instance.create_root_if_none(value):
-            instance.length = 1
             return
 
         temp_node = instance.root
@@ -89,6 +99,7 @@ class SingleLinkedListCommon(object):
             temp_node = temp_node.next
 
         temp_node += instance.make_node(value)
+        # temp_node.next = instance.make_node(value)
         instance.length += 1
 
     @staticmethod
@@ -145,7 +156,10 @@ class FIFO_LL(AbstractLL, CommonSingleLLMethods):
         SingleLinkedListCommon.push_back(self, value)
     
     def remove(self):
+        SingleLinkedListCommon.is_empty(self)
+        value = self.root.value
         SingleLinkedListCommon.pop_front(self)
+        return value
 
 class LIFO_LL(AbstractLL, CommonSingleLLMethods):
     '''
@@ -155,7 +169,10 @@ class LIFO_LL(AbstractLL, CommonSingleLLMethods):
         SingleLinkedListCommon.push_front(self, value)
 
     def remove(self):
+        SingleLinkedListCommon.is_empty(self)
+        value = self.root.value
         SingleLinkedListCommon.pop_front(self)
+        return value
 
 class LinkedList(CommonSingleLLMethods):
 
@@ -187,6 +204,7 @@ class Node(object):
         '''
         if isinstance(node, Node):
             self.next = node
+            return self
         else:
             raise TypeError("Inappropriate Add Node operation")
     
