@@ -33,3 +33,7 @@
 
 #Directory
 .vscode/
+__pycache__
+driver_array.py
+driver_linked.py
+driver_traversal.py
