@@ -1,6 +1,5 @@
 from binary_tree import CommonTreeMethods, Abstract_Tree
 
-from stack import Stack
 
 class BST(CommonTreeMethods,Abstract_Tree):
     '''

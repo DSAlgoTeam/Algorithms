@@ -1,4 +1,6 @@
 from abc import ABCMeta,abstractmethod
+from stack import Stack_List
+from queue import Queue_List
 
 class Abstract_Tree(metaclass=ABCMeta):
     '''
@@ -100,6 +102,46 @@ class CommonTreeMethods:
 
         fn(node.value)
     
+
+    def dfs(self, v):
+        '''
+        
+        '''
+        found = False
+        stack = Stack_List(self.root)
+        while not stack.empty():
+            node = stack.remove()
+            if node.value == v:
+                found = True
+                break
+
+            if node.right:
+                stack.insert(node.right)
+            if node.left:
+                stack.insert(node.left)
+        return found
+    
+    def bfs(self, v):
+        '''
+        '''
+        found = False
+        queue = Queue_List(self.root)
+        while not queue.empty():
+            node = queue.remove()
+
+            if node.value == v:
+                found = True
+                break
+            
+            if node.left:
+                queue.insert(node.left)
+
+            if node.right:
+                queue.insert(node.right)
+        return found
+
+
+
 
     def __len__(self):
         return self.length
