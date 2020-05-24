@@ -31,5 +31,11 @@
 *.out
 *.app
 
-#Directory
-.vscode/
+# Tests
+test.py
+
+# PyCache
+*.pyc
+
+# VS Code settings
+**/.vscode/**
