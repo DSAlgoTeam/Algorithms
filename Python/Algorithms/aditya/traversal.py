@@ -26,20 +26,21 @@ class Traversal:
             Traversal.preorder(root.right , l) 
         return l
     @staticmethod
-    def levelorder(root , l): 
+    def levelorder(root ,val, l): 
         if root is None: 
-            return
+            return False
         q = Queue()
         q.insert(root) 
         while len(q):
             current = q.remove()
-            l.append(current.val)  
+            l.append(current.val)
+            if current.val == val :
+                return (True,l)   
             if current.left : 
                 q.insert(current.left) 
             if current.right : 
-                q.insert
-                (current.right)
-        return l
+                q.insert(current.right)
+        return (False,l)
 
 class TraversalWrapper :
     def inorder(self):
@@ -65,11 +66,12 @@ class TraversalWrapper :
         
 
 
-    def levelorder(self):
+    def levelorder(self, val):
         '''
-        return a list with the tree traversed with levelorder
+        searches for the value val using bfs on the tree and returns the traversal and bool indicating 
+        weather item was found or not . 
         '''
-        return Traversal.levelorder(self.root , [])
+        return Traversal.levelorder(self.root ,val , [])
         
 
     def topologicalsort(self):
@@ -81,22 +83,25 @@ class TraversalWrapper :
 
     def bfs(self , val):
         '''
-        searches for the value val using bfs on the tree
+        searches for the value val using bfs on the tree and returns the traversal and bool indicating 
+        weather item was found or not . 
         '''
 
         if self.root is None: 
             return False
         q = Queue()
+        l= []
         q.insert(self.root) 
         while len(q):
             current = q.remove()
+            l.append(current.val)
             if current.val == val :
-                return True   
+                return (True,l)   
             if current.left : 
                 q.insert(current.left) 
             if current.right : 
                 q.insert(current.right)
-        return False
+        return (False,l)
     
     def dfs(self , val):
         '''
