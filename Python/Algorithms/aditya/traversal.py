@@ -1,4 +1,4 @@
-from collections import deque
+from stack_queue_array import Stack , Queue
 class Traversal:
     @staticmethod
     def inorder( root ,l): 
@@ -29,15 +29,16 @@ class Traversal:
     def levelorder(root , l): 
         if root is None: 
             return
-        q = deque([])
-        q.append(root) 
+        q = Queue()
+        q.insert(root) 
         while len(q):
-            current = q.popleft()
+            current = q.remove()
             l.append(current.val)  
             if current.left : 
-                q.append(current.left) 
+                q.insert(current.left) 
             if current.right : 
-                q.append(current.right)
+                q.insert
+                (current.right)
         return l
 
 class TraversalWrapper :
@@ -82,34 +83,35 @@ class TraversalWrapper :
         '''
         searches for the value val using bfs on the tree
         '''
+
         if self.root is None: 
             return False
-        q = deque([])
-        q.append(self.root) 
+        q = Queue()
+        q.insert(self.root) 
         while len(q):
-            current = q.popleft()
+            current = q.remove()
             if current.val == val :
                 return True   
             if current.left : 
-                q.append(current.left) 
+                q.insert(current.left) 
             if current.right : 
-                q.append(current.right)
+                q.insert(current.right)
         return False
     
     def dfs(self , val):
         '''
         searches for value val  using dfs on the tree
         '''
-        stack = []
-        stack.append(self.root)
+        stack = Stack()
+        stack.insert(self.root)
         while len(stack):
-            current = stack.pop()
+            current = stack.remove()
             if current.val == val:
                 return True
             if current.right:
-                stack.append(current.right)
+                stack.insert(current.right)
             if current.left:
-                stack.append(current.left)
+                stack.insert(current.left)
         return False
         
 
@@ -121,3 +123,5 @@ class Node :
     
     def __str__(self):
         return str(self.val)
+
+

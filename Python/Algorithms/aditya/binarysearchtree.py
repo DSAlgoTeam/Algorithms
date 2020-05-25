@@ -25,14 +25,17 @@ class BinarySearchTree(TraversalWrapper) :
     def __init__(self,key=None) :
         if key is not None :
             self.root = Node(key)
-        self.root = None
+            self.length = 1
+        else :
+            self.root = None
+            self.length = 0 
 
     def insert(self,val): 
         '''
         inserts  a node recursively with the value provided
         '''
         self.root =  BinarySearchTreeFunctions.insert(self.root,val)
-    
+        self.length +=1
     # def delete(self,val) :
 
         
