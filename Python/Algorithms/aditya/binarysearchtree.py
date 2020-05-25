@@ -5,7 +5,9 @@ from traversal import TraversalWrapper , Node
 class BinarySearchTreeFunctions :
     @staticmethod
     def insert( root, val): 
-  
+        '''
+        inserts  a node recursively with the value provided
+        '''
         if root is None: 
             return Node(val) 
     
@@ -26,12 +28,15 @@ class BinarySearchTree(TraversalWrapper) :
         self.root = None
 
     def insert(self,val): 
-        
+        '''
+        inserts  a node recursively with the value provided
+        '''
         self.root =  BinarySearchTreeFunctions.insert(self.root,val)
     
-    def delete(self,val) :
+    # def delete(self,val) :
+
         
-        self.root = BinarySearchTreeFunctions.delete(self.root,val)
+    #     self.root = BinarySearchTreeFunctions.delete(self.root,val)
 
 
 

@@ -12,6 +12,9 @@ class BinaryTree(TraversalWrapper) :
         self.root = None
   
     def insert(self ,val = None) :
+        '''
+        inserts  a node  with the value provided
+        '''
         if val is None :
             raise ValueError("NoneType Argument not Accepted")
           
