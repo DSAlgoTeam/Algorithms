@@ -31,7 +31,7 @@ May 24th 2020 11:59 PM IST
 May 26th 2020 11:59 PM IST
 
 ## Set - 4 - (Raise Separate PR)
-1. Trie - Insert Delete and Print
+1. N - Array - Tree - Insert Delete and Traverse level order and order of depth
 
 ### Due date - Submissions
 May 27th 2020  11:59 PM IST
