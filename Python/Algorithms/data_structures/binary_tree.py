@@ -104,9 +104,15 @@ class CommonTreeMethods:
         Applies `fn` to all elements during level order traversal
         '''
         node = node if node else self.root
-        h = self.height(node)
-        for i in range(1,h+1):
-            self.apply_to_level(node, i, print)
+        queue = Queue_List
+        queue.insert(node)
+        while not queue.empty():
+            node = queue.remove()
+
+            fn(node.value)
+
+            queue.insert(node.left)
+            queue.insert(node.right)
 
     def apply_to_level(self, node, level, fn = print):
         '''
