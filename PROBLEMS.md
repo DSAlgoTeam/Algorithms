@@ -30,6 +30,34 @@ May 24th 2020 11:59 PM IST
 ### Due Date - Submissions
 May 26th 2020 11:59 PM IST
 
+## Set - 4 - (Raise Separate PR)
+1. N - Array - Tree - Insert Delete and Traverse level order and order of depth
+
+### Due date - Submissions
+May 27th 2020  11:59 PM IST
+
+## Set - 5 - (Raise Separate PR)
+1. Insertion Sort
+2. Quick Sort
+3. Selection Sort
+4. Bubble Sort
+5. Merge Sort
+6. Heap Sort
+7. Count Sort
+8. Radix Sort
+
+### Due Date - Submissions
+May 28th 2020 11:59 PM IST
+
+## Set - 6 - (Raise Separate PR)
+1. Hashing
+a. Open Addressing - Linear and Quadratic Probing
+b. Clustering
+c. Double hashing
+
+### Due Date - Submissions
+May 30th 2020 11:59 PM IST
+
 # Generic Features
 - CPP uses Template Programming so that this feature can be applied across all the data types
 - Effective Object Oriented Prgramming practice is Used.
