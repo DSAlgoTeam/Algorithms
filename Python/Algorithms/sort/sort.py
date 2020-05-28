@@ -163,7 +163,6 @@ def _merge(arr, start, mid, end, incremental):
     p,q = start, mid+1
     ar = [0] * (end - start+1)
     k = 0
-    print(start, mid , end)
     if incremental:
         for i in range(start, end+1):
             if p > mid:
@@ -197,8 +196,6 @@ def _merge(arr, start, mid, end, incremental):
     for i in range(k):
         arr[start] = ar[i]
         start += 1
-    
-    print(ar, arr)
 
 def merge_sort(arr,start = 0, end = None, incremental = True):
     
@@ -215,13 +212,3 @@ def merge_sort(arr,start = 0, end = None, incremental = True):
         merge_sort(arr, mid + 1, end, incremental)
         _merge(arr, start, mid, end, incremental)
 
-
-def count_sort(arr, incremental = True):
-    '''
-    sort elements using count sort.
-    '''
-#TODO: finish this 
-    _is_iterable(arr)
-    _is_bool(incremental)
-    _is_homogenous(arr)
-        
