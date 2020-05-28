@@ -74,19 +74,19 @@ def quick_sort(arr):
 
 def quick_sort_helper(arr,low,high):
    if low<high:
-       splitpoint = partition(arr,low,high)
-       quick_sort_helper(arr,low,splitpoint-1)
-       quick_sort_helper(arr,splitpoint+1,high)
+       split = partition(arr,low,high)
+       quick_sort_helper(arr,low,split-1)
+       quick_sort_helper(arr,split+1,high)
 
 def partition(arr,low,high):
-   pivotvalue = arr[low]
+   pivot = arr[low]
    left = low+1
    right = high
    done = False
    while not done:
-       while left <= right and arr[left] <= pivotvalue:
+       while left <= right and arr[left] <= pivot:
            left = left + 1
-       while arr[right] >= pivotvalue and right >= left:
+       while arr[right] >= pivot and right >= left:
            right = right -1
        if right < left:
            done = True
