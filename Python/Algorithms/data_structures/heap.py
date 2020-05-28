@@ -12,7 +12,6 @@ class Heap:
         self.heap = []
         self.min_heap = min_heap
         if iterable:
-            if min_heap:
                 for i in iterable:
                     self.insert(i)
 
