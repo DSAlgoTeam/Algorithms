@@ -29,7 +29,6 @@ def rehash_quadratic(pos,i,length) :
 def rehash(pos) :
     return  PRIME - (pos//PRIME)
 
-
 def insert(Hash_table,key) :
     length = len(Hash_table)
     hash_key = hash(Hash_table,key)
@@ -87,12 +86,3 @@ def delete(Hash_table,key) :
     return False 
 
 
-hash_table = set_hashtable_size(11)
-insert(hash_table,10)
-insert(hash_table,11)
-insert(hash_table,13)
-insert(hash_table,15)
-insert(hash_table,400)
-delete(hash_table,10)
-print(search(hash_table,10))
-print(hash_table)
