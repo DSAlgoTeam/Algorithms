@@ -1,9 +1,12 @@
 
 class Heap :
     HEAP_SIZE = 10
-    def __init__(self) :
+
+    def __init__(self,N,type = 'min') :
+        Heap.HEAP_SIZE = N
         self._heap = [None]*Heap.HEAP_SIZE
         self.count = 0
+        self.type = type
 
     def __len__(self) :
         return self.count
@@ -22,11 +25,14 @@ class Heap :
         return self.HEAP_SIZE
 
     def insert(self,value) :
-        if self.count < self.capacity() :
+        if self.count >= self.capacity() :
              Exception("Cannot add to full heap")
         self._heap[self.count] = value
         self.count +=1
-        self._siftUp(self.count - 1)
+        if self.type == 'min' :
+            self._siftUp(self.count - 1)
+        else :
+            self._siftUpMax(self.count - 1)
 
     def extract(self) :
         if self.count == 0 :
@@ -34,8 +40,10 @@ class Heap :
         value  = self._heap[0]
         self.count -=1
         self._heap[0] = self._heap[self.count]
-
-        self._siftDown(0)
+        if self.type == 'min':
+            self._siftDown(0)
+        else :
+            self._siftDownMax(0)
         return value
 
     def _siftUpMax( self, ndx ):
@@ -82,5 +90,3 @@ class Heap :
             self._heap[ndx] , self._heap[largest] =   self._heap[largest] , self._heap[ndx] 
             self. _siftDownMax(largest)
     
-    # def __str__(self) :
-    #     return " ".join(self._heap)
