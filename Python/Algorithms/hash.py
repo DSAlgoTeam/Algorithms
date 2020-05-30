@@ -1,26 +1,25 @@
         
-def hash(arr, key):
+def hash(num, key):
     '''
     returns hash key for key in the arr
     '''
-    l = len(arr)
     if key is int:
-        return key % l
+        return key % num
     else:
         s = 0
         for i in key:
             s += ord(i)
-        return s % l
+        return s % num
 
 def double_hash(arr, key, prime):
     '''
     use double hash to avoid collision and clustering
     '''
-    hashkey = hash(key)
+    hashkey = hash(len(arr),key)
     primehash = _prime_hash(prime, key)
     i = 1
     while arr[hashkey] is not None:
-        hashkey = hashkey + i * primehash
+        hashkey = (hashkey + i * primehash) % len(arr)
         i += 1
     return hashkey
 
@@ -41,7 +40,7 @@ def linear_probe(arr, key):
     '''
     linear probing to avoid collision
     '''
-    hashkey = hash(arr,key)
+    hashkey = hash(len(arr),key)
     i = 1
     while arr[hashkey] is not None:
         hashkey = (hashkey + i) % len(arr)
@@ -52,7 +51,7 @@ def quadratic_probe(arr, key):
     '''
     quadratic probing to aoid collision and clustering
     '''
-    hashkey = hash(arr,key)
+    hashkey = hash(len(arr),key)
     i = 1
     while arr[hashkey] is not None:
         hashkey = (hashkey + i*i) % len(arr)
