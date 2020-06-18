@@ -210,3 +210,18 @@ class Node(object):
     
     def __str__(self):
         return str(self.value)
+
+class DoubleLinkedNode(object):
+
+    def __init__(self, value, left = None, right = None):
+        if not isinstance(left, (DoubleLinkedNode, type(None))):
+            raise TypeError("left should be of type : DoubleLinkedNode")
+        if not isinstance(right, (DoubleLinkedNode, type(None))):
+            raise TypeError("right should be of type : DoubleLinkedNode")
+        
+        self.value = value
+        self.right = right
+        self.left = left
+
+    def __str__(self):
+        return str(self.value)

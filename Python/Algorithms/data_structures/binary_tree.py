@@ -1,6 +1,7 @@
 from abc import ABCMeta,abstractmethod
 from stack import Stack_List
 from queue import Queue_List
+from linked_list import DoubleLinkedNode
 
 class Abstract_Tree(metaclass=ABCMeta):
     '''
@@ -25,13 +26,12 @@ class CommonTreeMethods:
         self.root = None
         self.numOfNodes = 0
         if value is not None:
-            self.root = self.make_node(value)
-            self.length = 1
+            self.create_root_if_none(value)
     
     def create_root_if_none(self,value):
         if self.root is None:
             self.root = self.make_node(value)
-            self.length += 1
+            self.numOfNodes += 1
             return True
         return False
     
@@ -49,7 +49,7 @@ class CommonTreeMethods:
             return True
         if self.root.next is None:
             self.root = None
-            self.length -= 1
+            self.numOfNodes -= 1
             return True
 
         return False
@@ -188,7 +188,7 @@ class CommonTreeMethods:
 
 
     def __len__(self):
-        return self.length
+        return self.numOfNodes
     
 
 
@@ -212,9 +212,8 @@ class Tree(CommonTreeMethods,Abstract_Tree):
                 break
             else:
                 queue.insert(node.right)
+        self.numOfNodes += 1
 
-class TreeNode:
+class TreeNode(DoubleLinkedNode):
     def __init__(self,value,left=None,right=None):
-        self.value = value
-        self.left = left
-        self.right = right
+        super().__init__(value, left, right)
