@@ -15,7 +15,7 @@ class Abstract_Tree(metaclass=ABCMeta):
     # def remove(self):
     #     return
 
-class CommonTreeMethods:
+class CommonBinaryTreeMethods:
     '''
     Generic Tree Utility
     '''
@@ -27,6 +27,7 @@ class CommonTreeMethods:
         self.numOfNodes = 0
         if value is not None:
             self.create_root_if_none(value)
+
     
     def create_root_if_none(self,value):
         if self.root is None:
@@ -47,7 +48,7 @@ class CommonTreeMethods:
         '''
         if self.root is None:
             return True
-        if self.root.next is None:
+        if self.root.left is None and self.root.right is None:
             self.root = None
             self.numOfNodes -= 1
             return True
@@ -192,7 +193,7 @@ class CommonTreeMethods:
     
 
 
-class Tree(CommonTreeMethods,Abstract_Tree):
+class BinaryTree(CommonBinaryTreeMethods,Abstract_Tree):
     def insert(self,value):
         '''
         Level order insertion of nodes
@@ -200,6 +201,7 @@ class Tree(CommonTreeMethods,Abstract_Tree):
         if self.create_root_if_none(value):
             return
         queue = Queue_List(self.root)
+        self.numOfNodes += 1
         while not queue.empty():
             node = queue.remove()
             if not node.left:

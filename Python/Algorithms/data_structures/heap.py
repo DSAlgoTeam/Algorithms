@@ -12,7 +12,6 @@ class Heap:
         self.heap = []
         self.min_heap = min_heap
         if iterable:
-            if min_heap:
                 for i in iterable:
                     self.insert(i)
 
@@ -34,7 +33,6 @@ class Heap:
         else:
             while i != 0 and (self.heap[self.parent(i)] < self.heap[i]):
                 self.swap(i, self.parent(i))
-                print(self.heap[i], self.heap[self.parent(i)])
                 i = self.parent(i)
 
     def peek(self):
@@ -73,8 +71,6 @@ class Heap:
             self.swap(i,smallest)
             self.heapify(smallest)
         
-    
-
     
     def left(self, idx):
         '''
