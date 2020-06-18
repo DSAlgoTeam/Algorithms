@@ -1,4 +1,4 @@
-from binary_tree import CommonTreeMethods, Abstract_Tree
+from Python.Algorithms.data_structures.binary_tree import CommonTreeMethods, Abstract_Tree
 
 
 class BST(CommonTreeMethods,Abstract_Tree):

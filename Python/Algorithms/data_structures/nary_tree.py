@@ -1,6 +1,6 @@
 from collections.abc import Iterable
-from queue import Queue_List
-from stack import Stack_List
+from Python.Algorithms.data_structures.queue import Queue_List
+from Python.Algorithms.data_structures.stack import Stack_List
 
 class N_Ary_Node:
     def __init__(self, value = None, children = None):

@@ -1,7 +1,7 @@
 from abc import ABCMeta,abstractmethod
-from stack import Stack_List
-from queue import Queue_List
-from linked_list import DoubleLinkedNode
+from Python.Algorithms.data_structures.stack import Stack_List
+from Python.Algorithms.data_structures.queue import Queue_List
+from Python.Algorithms.data_structures.linked_list import DoubleLinkedNode
 
 class Abstract_Tree(metaclass=ABCMeta):
     '''
@@ -218,4 +218,4 @@ class BinaryTree(CommonBinaryTreeMethods,Abstract_Tree):
 
 class TreeNode(DoubleLinkedNode):
     def __init__(self,value,left=None,right=None):
-        super().__init__(value, left, right)
+        super(TreeNode,self).__init__(value, left, right)

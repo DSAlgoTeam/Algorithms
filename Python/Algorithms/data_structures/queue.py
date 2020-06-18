@@ -1,5 +1,5 @@
-from linked_list import FIFO_LL
-from lists import FIFO_List
+from Python.Algorithms.data_structures.linked_list import FIFO_LL
+from Python.Algorithms.data_structures.lists import FIFO_List
 
 class Queue(FIFO_LL):
     
