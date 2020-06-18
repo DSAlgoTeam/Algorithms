@@ -1,4 +1,4 @@
-from heap import Heap
+from Python.Algorithms.data_structures.heap import Heap
 
 class PriorityQueue(Heap):
     def __init__(self, iterable=None, max_queue = True):
