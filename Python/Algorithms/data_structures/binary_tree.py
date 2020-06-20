@@ -1,6 +1,7 @@
 from abc import ABCMeta,abstractmethod
-from stack import Stack_List
-from queue import Queue_List
+from Python.Algorithms.data_structures.stack import Stack_List
+from Python.Algorithms.data_structures.queue import Queue_List
+from Python.Algorithms.data_structures.linked_list import DoubleLinkedNode
 
 class Abstract_Tree(metaclass=ABCMeta):
     '''
@@ -14,7 +15,7 @@ class Abstract_Tree(metaclass=ABCMeta):
     # def remove(self):
     #     return
 
-class CommonTreeMethods:
+class CommonBinaryTreeMethods:
     '''
     Generic Tree Utility
     '''
@@ -25,13 +26,13 @@ class CommonTreeMethods:
         self.root = None
         self.numOfNodes = 0
         if value is not None:
-            self.root = self.make_node(value)
-            self.length = 1
+            self.create_root_if_none(value)
+
     
     def create_root_if_none(self,value):
         if self.root is None:
             self.root = self.make_node(value)
-            self.length += 1
+            self.numOfNodes += 1
             return True
         return False
     
@@ -47,9 +48,9 @@ class CommonTreeMethods:
         '''
         if self.root is None:
             return True
-        if self.root.next is None:
+        if self.root.left is None and self.root.right is None:
             self.root = None
-            self.length -= 1
+            self.numOfNodes -= 1
             return True
 
         return False
@@ -104,9 +105,15 @@ class CommonTreeMethods:
         Applies `fn` to all elements during level order traversal
         '''
         node = node if node else self.root
-        h = self.height(node)
-        for i in range(1,h+1):
-            self.apply_to_level(node, i, print)
+        queue = Queue_List
+        queue.insert(node)
+        while not queue.empty():
+            node = queue.remove()
+
+            fn(node.value)
+
+            queue.insert(node.left)
+            queue.insert(node.right)
 
     def apply_to_level(self, node, level, fn = print):
         '''
@@ -182,11 +189,11 @@ class CommonTreeMethods:
 
 
     def __len__(self):
-        return self.length
+        return self.numOfNodes
     
 
 
-class Tree(CommonTreeMethods,Abstract_Tree):
+class BinaryTree(CommonBinaryTreeMethods,Abstract_Tree):
     def insert(self,value):
         '''
         Level order insertion of nodes
@@ -194,6 +201,7 @@ class Tree(CommonTreeMethods,Abstract_Tree):
         if self.create_root_if_none(value):
             return
         queue = Queue_List(self.root)
+        self.numOfNodes += 1
         while not queue.empty():
             node = queue.remove()
             if not node.left:
@@ -206,9 +214,8 @@ class Tree(CommonTreeMethods,Abstract_Tree):
                 break
             else:
                 queue.insert(node.right)
+        self.numOfNodes += 1
 
-class TreeNode:
+class TreeNode(DoubleLinkedNode):
     def __init__(self,value,left=None,right=None):
-        self.value = value
-        self.left = left
-        self.right = right
+        super(TreeNode,self).__init__(value, left, right)

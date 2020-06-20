@@ -1,5 +1,5 @@
-from linked_list import LIFO_LL
-from lists import LIFO_List
+from Python.Algorithms.data_structures.linked_list import LIFO_LL
+from Python.Algorithms.data_structures.lists import LIFO_List
 
 class Stack(LIFO_LL):
     

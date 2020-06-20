@@ -1,5 +1,5 @@
 from collections.abc import Iterable
-from ..data_structures.heap import Heap
+from Python.Algorithms.data_structures.heap import Heap
 
 def _is_iterable(iterable):
     '''
@@ -211,4 +211,3 @@ def merge_sort(arr,start = 0, end = None, incremental = True):
         merge_sort(arr, start, mid, incremental)
         merge_sort(arr, mid + 1, end, incremental)
         _merge(arr, start, mid, end, incremental)
-
