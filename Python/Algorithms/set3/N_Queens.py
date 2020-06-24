@@ -1,7 +1,6 @@
 class N_Queen:
         
         def __init__(self, N = 3):
-            self.count = 0
             self.N = N
             self.matrix = []
             for i in range(N): self.matrix.append([0 for i in range(N)])
@@ -9,11 +8,12 @@ class N_Queen:
         
         def n_Queen(self, row = 0):
             '''
-            return number of possible solutions for given 'N' in N-Queen's problem
+            prints all possible solutions for given 'N' in N-Queen's problem
             '''
-            if row == self.N: 
-                self.count += 1
-                print(self.matrix)
+            if row == self.N:
+                for i in range(self.N):
+                    print(self.matrix[i])
+                print('\n')
                 return
             for i in range(self.N):
                 if self.possible(row, i):
@@ -47,3 +47,11 @@ class N_Queen:
                 j += 1
 
             return True
+
+def main():
+    queen = N_Queen(4)
+    queen.n_Queen()
+
+
+if __name__ =="__main__":
+    main()
