@@ -9,6 +9,7 @@ This directory isn't a part of the main data structures and algorithms directory
 - Sudoku
 - The Knight's Tour
 - Rat in a maze
+- N-Queens
 
 ### Graphs
 
