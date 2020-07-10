@@ -25,29 +25,31 @@ def numParkingLots(matrix):
         if len(matrix) <1:
                 return 0
         plots = 0
+        size = 0
         plot_area = set()
         for r in range(len(matrix)):
             for c in range(len(matrix[0])):
-                if matrix[r][c] == 0:
+                if matrix[r][c] == 1:
                     plot_area.add((r,c))
         def dfs(r,c):
             if (r,c) in plot_area:
                 plot_area.remove((r,c))
-                dfs(r+1,c)
-                dfs(r-1,c)
-                dfs(r,c+1)
-                dfs(r,c-1)
+                return 1 + dfs(r+1,c) + dfs(r-1,c) + dfs(r,c+1) + dfs(r,c-1)
+            return 0
         while plot_area:
             cell = plot_area.pop()
             plot_area.add(cell)
             
-            dfs(cell[0],cell[1])
+            size = max(size,dfs(cell[0],cell[1]))
             plots+=1
-        return plots
+        return (plots,size)
                     
 
 def largestPlotSize(matrix):
     # considering dark plots only
+    '''
+    largest square plot
+    '''
     if(len(matrix) == 0) : return 0
     count = 0
     rows = len(matrix)
@@ -55,7 +57,7 @@ def largestPlotSize(matrix):
     dp = [[0 for i in range(cols+1)] for j in range(rows+1)]
     for i in range(1,rows+1):
         for j in range(1,cols+1):
-            if matrix[i-1][j-1] == 0:
+            if matrix[i-1][j-1] == 1:
                 dp[i][j] = 1 + min(dp[i-1][j], dp[i-1][j-1], dp[i][j-1])
                 count = max(count,dp[i][j])
     return count
