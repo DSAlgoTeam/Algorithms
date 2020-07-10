@@ -12,7 +12,7 @@ number of parking lots and size of the largest parking lot ?
 
 def plot(matrix):
     '''
-    black(0) and white(1) matrix
+    black(1) and white(0) matrix
 
     prints the number of plots
     prints the largest plot size
@@ -21,7 +21,7 @@ def plot(matrix):
     print(largestPlotSize(matrix))
 
 def numParkingLots(matrix):
-    # considering black as 0 and white as 1
+    # considering black as 1 and white as 0
         if len(matrix) <1:
                 return 0
         plots = 0
